@@ -21,7 +21,8 @@ export default {
 			TELEGRAM_API_TOKEN: env.TELEGRAM_API_TOKEN,
 			CLIENT_ID: env.CLIENT_ID,
 			CLIENT_SECRET: env.CLIENT_SECRET,
-			REFRESH_TOKEN: env.REFRESH_TOKEN
+			REFRESH_TOKEN: env.REFRESH_TOKEN,
+			calendarId: env.CALENDAR_ID
 		};
 
 		ctx.waitUntil(sendNotification(props));

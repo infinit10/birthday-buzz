@@ -14,13 +14,16 @@ export async function sendNotification(props: NotifProps): Promise<void> {
         const messageClient = new TelegramMessaging({ token: props.TELEGRAM_API_TOKEN });
         const chatId = props.TELEGRAM_CHAT_ID;
 
-        const calendarClient = new GoogleCalendarService({
-            clientEmail: props.CLIENT_EMAIL,
-            privateKey: props.PRIVATE_KEY,
-            clientId: props.CLIENT_ID,
-            clientSecret: props.CLIENT_SECRET,
-            refreshToken: props.REFRESH_TOKEN
-        });
+        const calendarClient = new GoogleCalendarService(
+            {
+                clientEmail: props.CLIENT_EMAIL,
+                privateKey: props.PRIVATE_KEY,
+                clientId: props.CLIENT_ID,
+                clientSecret: props.CLIENT_SECRET,
+                refreshToken: props.REFRESH_TOKEN
+            },
+            props.calendarId
+        );
 
         const calendarEvents = await calendarClient.getTodaysEvents();
 

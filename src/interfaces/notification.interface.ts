@@ -6,4 +6,5 @@ export default interface NotifProps {
     CLIENT_ID: string;
     CLIENT_SECRET: string;
     REFRESH_TOKEN: string;
+    calendarId: string;
 }

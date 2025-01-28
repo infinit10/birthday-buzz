@@ -1,5 +1,5 @@
 import { google, calendar_v3 } from 'googleapis';
-import { JWT, OAuth2Client } from 'google-auth-library';
+import { OAuth2Client } from 'google-auth-library';
 
 interface CalendarEventDetails {
     id: string;
@@ -18,10 +18,10 @@ interface Credentials {
 
 export class GoogleCalendarService {
     private oauth2Client: OAuth2Client;
-    // private auth: JWT;
     private calendar: calendar_v3.Calendar;
+    private calendarId: string;
 
-    constructor(creds: Credentials) {
+    constructor(creds: Credentials, calendarId: string) {
         this.oauth2Client = new OAuth2Client(
             creds.clientId,
             creds.clientSecret,
@@ -32,26 +32,19 @@ export class GoogleCalendarService {
             refresh_token: creds.refreshToken 
         });
         
-        // this.auth = new google.auth.JWT(
-        //     creds.clientEmail,
-        //     undefined,
-        //     creds.privateKey,
-        //     ['https://www.googleapis.com/auth/calendar']
-        // )
-
         this.calendar = google.calendar({ version: 'v3', auth: this.oauth2Client });
+
+        this.calendarId = calendarId;
     }
 
     async getTodaysEvents(): Promise<CalendarEventDetails[]> {
         const now = new Date();
-        const startOfDay = new Date(now.setHours(0, 0, 0, 0));
         const endOfDay = new Date(now.setHours(23, 59, 59, 999));
 
         try {
             const response = await this.calendar.events.list({
-                // auth: this.auth,
-                calendarId: 's.gopikrishna2k@gmail.com',
-                timeMin: startOfDay.toISOString(),
+                calendarId: this.calendarId,
+                timeMin: now.toISOString(),
                 timeMax: endOfDay.toISOString(),
                 orderBy: 'startTime',
                 singleEvents: true

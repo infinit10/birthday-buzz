@@ -4,5 +4,6 @@ export default interface Env {
 	BASE64_SERVICE_ACCOUNT: string;
 	CLIENT_ID: string;
     CLIENT_SECRET: string;
-    REFRESH_TOKEN: string;
+	REFRESH_TOKEN: string;
+	CALENDAR_ID: string;
 }

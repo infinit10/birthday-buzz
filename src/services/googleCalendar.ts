@@ -39,7 +39,8 @@ export class GoogleCalendarService {
 
     async getTodaysEvents(): Promise<CalendarEventDetails[]> {
         const now = new Date();
-        const endOfDay = new Date(now.setHours(23, 59, 59, 999));
+        const endOfDay = new Date();
+        endOfDay.setHours(23, 59, 59, 999);
 
         try {
             const response = await this.calendar.events.list({
@@ -49,6 +50,8 @@ export class GoogleCalendarService {
                 orderBy: 'startTime',
                 singleEvents: true
             });
+
+            console.log(JSON.stringify(response));
 
             return (response.data.items || [])
                 .filter((event): event is calendar_v3.Schema$Event => !!event.id)

@@ -109,19 +109,43 @@ export default `<!DOCTYPE html>
             font-size: 0.9em;
             color: #666;
         }
+
+        .github {
+            padding-left: 0.5em;
+        }
+
+        .g_id_signin {
+            padding-right: 0.5em;
+        }
+
+        a,
+        a:visited,
+        a:hover,
+        a:active {
+            color: inherit;
+        }
     </style>
 </head>
 
 <body>
 
-    <!-- Header with Git logo and repo link -->
     <header
         style="display: flex; justify-content: space-between; align-items: center; padding: 16px 32px; background-color: #007acc; color: white; width: 100%; box-sizing: border-box;">
-        <!-- Left-aligned name -->
-        <span style="flex: 1; text-align: left;">BirthdayBuzz</span>
 
-        <!-- Git logo right-aligned -->
-        <div>
+        <span style="flex: 1; text-align: left;">
+            <a href="https://whatsapp-reminder.s-gopikrishna2k.workers.dev" target="_blank"
+                style="text-decoration:none;">BirthdayBuzz</a>
+        </span>
+
+        <script src="https://accounts.google.com/gsi/client" async></script>
+        <div id="g_id_onload" data-client_id="377391212877-8bnp9629l1kdb1v5ibtf53hvpprnct5u.apps.googleusercontent.com"
+            data-login_uri="https://whatsapp-reminder.s-gopikrishna2k.workers.dev" data-auto_prompt="false">
+        </div>
+        <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline" data-text="sign_in_with"
+            data-shape="rectangular" data-logo_alignment="left">
+        </div>
+
+        <div class="github">
             <a href="https://github.com/infinit10/birthday-buzz" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="Git Logo"
                     style="width: 30px; height: 30px;" />
@@ -133,14 +157,12 @@ export default `<!DOCTYPE html>
 
     <div class="container">
         <div class="circle-container">
-            <!-- SVG curved connections -->
             <svg class="connector">
                 <path d="M160 30 C80 90, 30 180, 50 250" stroke="#007acc" stroke-width="2" fill="none" />
                 <path d="M50 250 C160 280, 270 280, 270 250" stroke="#007acc" stroke-width="2" fill="none" />
                 <path d="M270 250 C290 180, 240 90, 160 30" stroke="#007acc" stroke-width="2" fill="none" />
             </svg>
 
-            <!-- Colored Logos -->
             <a href="https://telegram.org" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="Telegram"
                     class="telegram" />

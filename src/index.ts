@@ -1,8 +1,7 @@
 import Env from './interfaces/env.interface';
 import { sendNotification } from './handler';
 
-import indexHtmlString from './views/index'
-import privacyPolicyHtmlString from './views/privacy-policy';
+import views from './views/index';
 
 export default {
 	async fetch(request: Request, env: Env, ctx) {
@@ -10,13 +9,19 @@ export default {
 		console.log(`Hello ${navigator.userAgent} at path ${url.pathname}!`);
 
 		if (url.pathname === '/') {
-			return new Response(indexHtmlString, {
+			return new Response(views.home, {
 				headers: {
 					'content-type': 'text/html;charset=UTF-8',
 				},
 			});
 		} else if (url.pathname === '/privacy-policy') {
-			return new Response(privacyPolicyHtmlString, {
+			return new Response(views.privacyPolicy, {
+				headers: {
+					'content-type': 'text/html;charset=UTF-8',
+				},
+			});
+		} else if (url.pathname === '/login-success') {
+			return new Response(views.loginSuccess, {
 				headers: {
 					'content-type': 'text/html;charset=UTF-8',
 				},

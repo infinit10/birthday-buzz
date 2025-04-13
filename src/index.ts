@@ -1,9 +1,29 @@
 import Env from './interfaces/env.interface';
 import { sendNotification } from './handler';
 
+import indexHtmlString from './views/index'
+import privacyPolicyHtmlString from './views/privacy-policy';
+
 export default {
 	async fetch(request: Request, env: Env, ctx) {
-		return new Response("Hello from worker!");
+		const url: URL = new URL(request.url);
+		console.log(`Hello ${navigator.userAgent} at path ${url.pathname}!`);
+
+		if (url.pathname === '/') {
+			return new Response(indexHtmlString, {
+				headers: {
+					'content-type': 'text/html;charset=UTF-8',
+				},
+			});
+		} else if (url.pathname === '/privacy-policy') {
+			return new Response(privacyPolicyHtmlString, {
+				headers: {
+					'content-type': 'text/html;charset=UTF-8',
+				},
+			});
+		}
+
+		return new Response('Hello from worker!');
 	},
 	async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext) {
 		const base64EncodedKey = env.BASE64_SERVICE_ACCOUNT;

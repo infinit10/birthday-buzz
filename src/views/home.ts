@@ -178,7 +178,6 @@ export default `<!DOCTYPE html>
 
                 const url = 'https://accounts.google.com/o/oauth2/auth?' + stringifiedParams;
 
-                console.log('gouath url', url);
                 window.open(url, '_blank');
             }
         </script>

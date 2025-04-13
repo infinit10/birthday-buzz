@@ -6,8 +6,6 @@ import views from './views/index';
 export default {
 	async fetch(request: Request, env: Env, ctx) {
 		const url: URL = new URL(request.url);
-		console.log(`Hello ${navigator.userAgent} at path ${url.pathname}!`);
-
 		if (url.pathname === '/') {
 			return new Response(views.home, {
 				headers: {
@@ -30,6 +28,7 @@ export default {
 
 		return new Response('Hello from worker!');
 	},
+
 	async scheduled(controller: ScheduledController, env: Env, ctx: ExecutionContext) {
 		const base64EncodedKey = env.BASE64_SERVICE_ACCOUNT;
 		const { client_email, private_key } = JSON.parse(

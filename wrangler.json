@@ -13,5 +13,12 @@
     "crons": [
       "30 2 * * *"
     ]
-  }
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "calendar-sql",
+      "database_id": "414928a0-fa3e-4f61-9f4d-a2bbe70be63c"
+    }
+  ]
 }

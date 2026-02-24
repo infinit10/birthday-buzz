@@ -51,15 +51,15 @@ export async function sendNotification(props: NotifProps): Promise<void> {
 
     const toSendNotification = [];
 
-    for (const reminder of reminderList) {
-      const { birthday, name } = reminder;
+		reminderList.forEach((reminder) => {
+			const { birthday, name } = reminder;
 
       const [date, month] = birthday.split('-').map(Number);
 
       if (currentMonth === month && currentDate === date) {
         toSendNotification.push(name);
       }
-    }
+		});
 
     await Promise.all(toSendNotification.map((name) => {
       const messageString = `Reminder:\n\nToday is ${name}'s birthday. Reminding you as you're a very forgetful person\n\n~ BirthdayBuzz`
